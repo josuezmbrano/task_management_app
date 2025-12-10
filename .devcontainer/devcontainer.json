@@ -1,0 +1,35 @@
+{
+    "name": "Task Management Monorepo (pnpm)",
+    
+    // Usa una imagen base de Node.js que incluye las herramientas comunes
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:20", 
+    
+    // Comando CRÍTICO: Instala PNPM globalmente y luego instala las dependencias del monorepo.
+    "postCreateCommand": "npm install -g pnpm && pnpm install --frozen-lockfile",
+
+    "customizations": {
+        "vscode": {
+            "settings": {
+                // Configuración opcional para tu terminal predeterminada
+                "terminal.integrated.defaultProfile.linux": "bash"
+            },
+            // Extensiones que quieres pre-instaladas en tu Codespace
+            "extensions": [
+                "esbenp.prettier-vscode",
+                "dbaeumer.vscode-eslint"
+            ]
+        }
+    },
+    // Reenvío de puertos para Express (4000) y React (3000)
+    "forwardPorts": [3000, 5173],
+    "portsAttributes": {
+        "5173": {
+            "label": "Frontend (Client)",
+            "onAutoForward": "notify"
+        },
+        "3000": {
+            "label": "Backend (Server)",
+            "onAutoForward": "notify"
+        }
+    }
+}
