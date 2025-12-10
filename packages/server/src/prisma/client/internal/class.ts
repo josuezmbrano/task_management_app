@@ -23,7 +23,7 @@ const config: runtime.GetPrismaClientConfig = {
       "value": "prisma-client"
     },
     "output": {
-      "value": "D:\\Proyectos\\task-management-app\\packages\\server\\src\\prisma\\client",
+      "value": "/workspaces/task_management_app/packages/server/src/prisma/client",
       "fromEnvVar": null
     },
     "config": {
@@ -32,12 +32,16 @@ const config: runtime.GetPrismaClientConfig = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "debian-openssl-3.0.x",
         "native": true
+      },
+      {
+        "fromEnvVar": null,
+        "value": "debian-openssl-3.0.x"
       }
     ],
     "previewFeatures": [],
-    "sourceFilePath": "D:\\Proyectos\\task-management-app\\packages\\server\\prisma\\schema.prisma",
+    "sourceFilePath": "/workspaces/task_management_app/packages/server/prisma/schema.prisma",
     "isCustomOutput": true
   },
   "relativePath": "../../../prisma",
@@ -47,6 +51,7 @@ const config: runtime.GetPrismaClientConfig = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
@@ -55,8 +60,8 @@ const config: runtime.GetPrismaClientConfig = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client\"\n  output   = \"../src/prisma/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               String   @id @default(uuid())\n  public_id        String   @unique @default(uuid())\n  username         String   @unique\n  password         String\n  email            String   @unique\n  firstname        String\n  lastname         String\n  createdAt        DateTime @default(now())\n  updatedAt        DateTime @updatedAt\n  totalAppLifetime Int      @default(0)\n\n  projects Project[]\n  tasks    Task[]\n  sessions Session[]\n}\n\nmodel Project {\n  id          String   @id @default(uuid())\n  public_id   String   @unique @default(uuid())\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n  category    String\n  description String\n  owner_id    String\n  owner       User     @relation(fields: [owner_id], references: [id])\n  status      String   @default(\"pending\")\n  title       String\n  tasks       Task[]\n}\n\nmodel Task {\n  id          String    @id @default(uuid())\n  public_id   String    @unique @default(uuid())\n  completedAt DateTime?\n  createdAt   DateTime  @default(now())\n  title       String\n  description String\n  owner_id    String\n  owner       User      @relation(fields: [owner_id], references: [id])\n  project_id  String\n  project     Project   @relation(fields: [project_id], references: [id])\n  status      String    @default(\"pending\")\n}\n\nmodel Session {\n  id                String @id @default(uuid())\n  session_public_id String @unique @default(uuid())\n\n  refreshTokenHashed    String   @unique\n  searchToken           String   @unique\n  refreshTokenExpiresAt DateTime\n\n  isSessionProcessed Boolean   @default(false)\n  updatedAt          DateTime  @updatedAt\n  loggedAt           DateTime  @default(now())\n  loggedOutAt        DateTime?\n  lastActiveAt       DateTime  @default(now())\n  logoutReason       String?\n\n  owner_id String\n  owner    User   @relation(fields: [owner_id], references: [id])\n\n  totalSessionTime Int @default(0)\n}\n",
-  "inlineSchemaHash": "78d33ab3b4c3950725496c33b71a1f0627718971ebd705e8d77363d3b55e2f3d",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  binaryTargets = [\"native\", \"debian-openssl-3.0.x\"]\n  provider      = \"prisma-client\"\n  output        = \"../src/prisma/client\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id               String   @id @default(uuid())\n  public_id        String   @unique @default(uuid())\n  username         String   @unique\n  password         String\n  email            String   @unique\n  firstname        String\n  lastname         String\n  createdAt        DateTime @default(now())\n  updatedAt        DateTime @updatedAt\n  totalAppLifetime Int      @default(0)\n\n  projects Project[]\n  tasks    Task[]\n  sessions Session[]\n}\n\nmodel Project {\n  id          String   @id @default(uuid())\n  public_id   String   @unique @default(uuid())\n  createdAt   DateTime @default(now())\n  updatedAt   DateTime @updatedAt\n  category    String\n  description String\n  owner_id    String\n  owner       User     @relation(fields: [owner_id], references: [id])\n  status      String   @default(\"pending\")\n  title       String\n  tasks       Task[]\n}\n\nmodel Task {\n  id          String    @id @default(uuid())\n  public_id   String    @unique @default(uuid())\n  completedAt DateTime?\n  createdAt   DateTime  @default(now())\n  title       String\n  description String\n  owner_id    String\n  owner       User      @relation(fields: [owner_id], references: [id])\n  project_id  String\n  project     Project   @relation(fields: [project_id], references: [id])\n  status      String    @default(\"pending\")\n}\n\nmodel Session {\n  id                String @id @default(uuid())\n  session_public_id String @unique @default(uuid())\n\n  refreshTokenHashed    String   @unique\n  searchToken           String   @unique\n  refreshTokenExpiresAt DateTime\n\n  isSessionProcessed Boolean   @default(false)\n  updatedAt          DateTime  @updatedAt\n  loggedAt           DateTime  @default(now())\n  loggedOutAt        DateTime?\n  lastActiveAt       DateTime  @default(now())\n  logoutReason       String?\n\n  owner_id String\n  owner    User   @relation(fields: [owner_id], references: [id])\n\n  totalSessionTime Int @default(0)\n}\n",
+  "inlineSchemaHash": "67d8947ef75697bb3bb395c85309f2f8d55902e27bc4f049264941db5a9a33af",
   "copyEngine": true,
   "runtimeDataModel": {
     "models": {},
