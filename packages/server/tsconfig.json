@@ -1,0 +1,30 @@
+{
+    "compilerOptions": {
+        // MODULES AND TARGETS
+        "target": "es2022",
+        "module": "nodenext",
+        "moduleResolution": "nodenext",
+        "resolveJsonModule": true,
+
+        // FOLDERS AND STRUCTURE
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "baseUrl": ".",
+        "paths": {
+            "@task-app/common": ["../common/dist/*"],
+            "*": ["*"] 
+        },
+
+        // TYPE AND RULES
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "strict": true,
+        "skipLibCheck": true
+    },
+    "ts-node": {
+        "esm": true,
+        "experimentalSpecifierResolution": "node",
+    },
+    "include": ["src/**/*"],
+    "exclude": ["node_modules"]
+}

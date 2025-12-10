@@ -1,0 +1,40 @@
+import { AppError } from "src/utils/AppError.js"
+import { deleteTaskService } from "src/services/tasks/delete.task.service.js"
+
+import type { Request, Response } from "express-serve-static-core"
+import type { TaskResponseSuccess, TaskResponseError } from "src/types/custom.js"
+
+export const deleteTaskController = async (req: Request, res: Response<TaskResponseSuccess | TaskResponseError>): Promise<Response<TaskResponseSuccess | TaskResponseError>> => {
+
+    const userId = req.userId
+    const projectById = req.params.projectId
+    const taskById = req.params.taskId
+
+    if (!userId) {
+        return res.status(401).json({ message: 'Operation denied. No user id auth provided.', errorType: 'UNAUTHORIZED_OPERATION' })
+    }
+
+    if (!projectById) {
+        return res.status(400).json({ message: 'Missing required project ID in request parameters.', errorType: 'BAD_REQUEST' })
+    }
+
+    if (!taskById) {
+        return res.status(400).json({ message: 'Missing required task ID in request parameters.', errorType: 'BAD_REQUEST' })
+    }
+
+    try {
+
+        await deleteTaskService({userId: userId, projectById: projectById, taskById: taskById})
+        return res.status(200).json({message: 'Project task deleted successfully'})
+
+    } catch (error) {
+
+        if (error instanceof AppError) {
+            return res.status(error.status).json({ message: error.message, errorType: error.errorType })
+        }
+
+        console.error(error)
+        return res.status(500).json({ message: 'An unexpected internal server error ocurred.', errorType: 'INTERNAL_SERVER_ERROR' })
+
+    }
+}

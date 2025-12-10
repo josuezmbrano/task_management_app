@@ -1,0 +1,50 @@
+:root {
+  /*Font size*/
+  --font-size-body: 1rem; /*16px */
+  --font-size-h1: 2rem; /* 32px */
+  --font-size-h1-1: 1.8rem; /* 30px */
+  --font-size-h2: 1.75rem; /*28px */
+  --font-size-h3: 1.5rem; /* 24px */
+  --font-size-h4: 1.25rem; /* 20px */
+  --font-size-h5: 1.1rem; /* 18px */
+  --font-size-caption: 0.875rem; /* 14px */
+
+  /* Spacing Scale (ELEMENTS) */
+  --spacing-xs: 0.5rem; /* 8px */
+  --spacing-sm: 1rem; /* 16px */
+  --spacing-md: 1.5rem; /* 24px */
+  --spacing-lg: 2rem; /* 32px */
+  --spacing-xl: 3rem; /* 48px */
+
+  /*Colors Palette */
+  --color-base-100: oklch(100% 0 0);
+  --color-base-200: oklch(93% 0 0);
+  --color-base-300: oklch(86% 0 0);
+  --color-base-content: oklch(22.389% 0.031 278.072);
+  --color-primary: oklch(58% 0.158 241.966);
+  --color-primary-content: oklch(100% 0 0);
+  --color-secondary: oklch(55% 0.046 257.417);
+  --color-secondary-content: oklch(100% 0 0);
+  --color-accent: oklch(60% 0.118 184.704);
+  --color-accent-content: oklch(100% 0 0);
+  --color-neutral: oklch(0% 0 0);
+  --color-neutral-content: oklch(100% 0 0);
+  --color-info: oklch(60% 0.126 221.723);
+  --color-info-content: oklch(100% 0 0);
+  --color-success: oklch(62% 0.194 149.214);
+  --color-success-content: oklch(100% 0 0);
+  --color-warning: oklch(85% 0.199 91.936);
+  --color-warning-content: oklch(0% 0 0);
+  --color-error: oklch(70% 0.191 22.216);
+  --color-error-content: oklch(0% 0 0);
+
+  /*General inputs*/
+  --radius-selector: 0.25rem;
+  --radius-field: 1rem;
+  --radius-box: 1rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.28125rem;
+  --border: 1.5px;
+  --depth: 1;
+  --noise: 1;
+}

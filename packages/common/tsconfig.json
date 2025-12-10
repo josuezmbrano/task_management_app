@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "es2022", // Compiler version
+    "module": "NodeNext", // Module system of the js output code
+    "moduleResolution": "NodeNext", // Module search and resolve method
+    "rootDir": "./src", // Folder containing the code
+    "outDir": "./dist", // Folder for the js compiled code
+    "esModuleInterop": true, // Interopt betweeen CommonJs and ES modules
+    "forceConsistentCasingInFileNames": true, // Consistent file names capitalization
+    "strict": true, // Type safety rules check
+    "skipLibCheck": true, // Verification omit of .d.ts file in node_modules
+    "declaration": true, // Generate .d.ts files within the js output code
+    "declarationMap": true // Sourcemap generation for declaration files
+  },
+  "include": ["src/**/*"] // Files to include when compiling
+}
