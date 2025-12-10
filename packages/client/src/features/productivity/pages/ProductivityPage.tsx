@@ -28,7 +28,7 @@ export const ProductivityPage = (): JSX.Element => {
         )
     }
     
-    const tasksCompletedCount = taskActivityChart.reduce((acc, metric) => acc + metric.count, 0)
+    const tasksCompletedCount: number = taskActivityChart.reduce((acc, metric) => acc + metric.count, 0)
 
     return (
         <section>
@@ -36,7 +36,7 @@ export const ProductivityPage = (): JSX.Element => {
         <GlobalProjectsSummary projectsMetrics={projectsMetrics}/>
         <TaskActivityChart taskMetrics={taskActivityChart} />
         <PieChartMetrics pieChartData={pieChartData} />
-        <AppLifetimeMetric appTime={appTime} tasksCompletedCount={tasksCompletedCount}/>
+        <AppLifetimeMetric tasksCompletedCount={tasksCompletedCount}/>
 
         </section>
     )

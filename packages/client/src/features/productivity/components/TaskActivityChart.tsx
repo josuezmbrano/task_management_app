@@ -4,10 +4,10 @@ import { format, parseISO } from 'date-fns'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, CartesianGrid, ResponsiveContainer } from 'recharts';
 
 import type { TaskActivityMetricProps } from '../../../types/domain.types'
+import type { JSX } from 'react';
 
 
-
-export const TaskActivityChart = ({ taskMetrics }: { taskMetrics: TaskActivityMetricProps[] }) => {
+export const TaskActivityChart = ({ taskMetrics }: { taskMetrics: TaskActivityMetricProps[] }): JSX.Element => {
 
 
     const formattedChart = useMemo(() => {

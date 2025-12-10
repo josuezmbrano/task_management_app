@@ -1,6 +1,8 @@
-import { SessionFormatter } from "../../../components/ui/SessionFormatter";
+import { SessionFormatter } from '../../../components/ui/SessionFormatter';
 
-export const AppLifetimeMetric = ({ tasksCompletedCount }: { tasksCompletedCount: number }) => {
+import type { JSX } from 'react';
+
+export const AppLifetimeMetric = ({ tasksCompletedCount }: { tasksCompletedCount: number }): JSX.Element => {
     
 
     return (

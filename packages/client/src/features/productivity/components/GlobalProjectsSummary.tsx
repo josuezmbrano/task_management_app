@@ -2,8 +2,9 @@ import { Clock8, Pause, Cog, BadgeCheck } from 'lucide-react';
 import FolderImg from '../../../assets/session/folders.png'
 
 import type { ProjectsCountMetricsProps } from '../../../types/domain.types'
+import type { JSX } from 'react';
 
-export const GlobalProjectsSummary = ({ projectsMetrics }: { projectsMetrics: ProjectsCountMetricsProps }) => {
+export const GlobalProjectsSummary = ({ projectsMetrics }: { projectsMetrics: ProjectsCountMetricsProps }): JSX.Element => {
 
     const totalCount = projectsMetrics.total
     const pendingCount = projectsMetrics.pending

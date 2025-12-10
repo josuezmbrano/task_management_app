@@ -1,6 +1,8 @@
-import { SessionStore } from "../../store/useSessionStore";
+import { SessionStore } from '../../store/useSessionStore';
 
-export const SessionFormatter = () => {
+import type { JSX } from 'react';
+
+export const SessionFormatter = (): JSX.Element => {
 
     const {appLifetime} = SessionStore()
 

@@ -6,7 +6,7 @@ import { SessionStore } from '../store/useSessionStore'
 const KEY_COUNTER_METRIC = 'counter'
 
 
-export const useSessionCounter = () => {
+export const useSessionCounter = (): void => {
 
     const { initializeAppLifetime, updateAppLifetime } = SessionStore()
     const { appTime, appTimePending } = useSessionMetrics()
