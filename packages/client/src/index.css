@@ -41,6 +41,16 @@ body {
   gap: var(--spacing-xs);
 }
 
+.logout-button {
+  border: none;
+  padding: 0;
+  background-color: transparent;
+  font-size: var(--font-size-body);
+  color: #551A8B;
+  font-family: "Poppins", sans-serif;
+}
+
+
 /* HOME */
 
 .home-section {

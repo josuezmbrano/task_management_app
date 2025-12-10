@@ -38,7 +38,7 @@ export const Navbar = (): JSX.Element => {
                 (
                     <nav className='nav-bar'>
                         <NavLink to='/session'>dashboard</NavLink>
-                        <button onClick={logoutHandler}>Logout</button>
+                        <button className='logout-button' onClick={logoutHandler}>Logout</button>
                     </nav>
                 )
                 :
