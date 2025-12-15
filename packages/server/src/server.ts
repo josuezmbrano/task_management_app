@@ -11,12 +11,16 @@ import type { Express } from 'express';
 
 dotenv.config();
 
+
 const PORT: number = 3000
 const app: Express = express()
 
+
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://cautious-capybara-pqxwxvjp6x6frgj4-5173.app.github.dev',
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+  allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(cookieParser())
