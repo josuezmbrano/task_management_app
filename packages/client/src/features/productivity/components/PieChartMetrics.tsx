@@ -28,7 +28,8 @@ export const PieChartMetrics = ({ pieChartData }: { pieChartData: ChartPieMetric
         }, {})
     }, [pieChartData])
 
-    
+
+
     return (
         <section className='activity-charts-section'>
             <div className='activity-chart-header'>

@@ -16,11 +16,15 @@ dotenv.config();
 const PORT: number = 3000
 const app: Express = express()
 
+
+// TEMPORAL URLS ARRAY//////////
 const allowedOrigins = [
   'https://cautious-capybara-pqxwxvjp6x6frgj4-5173.app.github.dev',
 
   'http://localhost:5173',
 ];
+////////////////////////////
+
 
 app.use(cors({
   origin: allowedOrigins,

@@ -1956,3 +1956,39 @@ body {
   font-weight: 600;
   color: var(--color-info);
 }
+
+
+/* Empty task activity chart */
+
+.empty-task-activity-chart-container {
+  gap: 25px;
+  background-color: rgba(216, 216, 216, 0.664);
+  width: 90%;
+  border-radius: 6px;
+  margin: var(--spacing-xs) auto;
+  padding: var(--spacing-md) 0;
+}
+
+.empty-task-activity-chart-image {
+  display: flex;
+  justify-content: center;
+}
+
+.empty-task-activity-chart-image img {
+  width: 80px;
+}
+
+.empty-task-activity-chart-titles {
+  text-align: center;
+  padding: 0 0.3rem
+}
+
+.empty-task-activity-chart-titles h6 {
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0.5rem 0;
+}
+
+.empty-task-activity-chart-titles span {
+  font-size: var(--font-size-caption);
+}
