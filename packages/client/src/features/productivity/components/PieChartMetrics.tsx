@@ -29,7 +29,9 @@ export const PieChartMetrics = ({ pieChartData }: { pieChartData: ChartPieMetric
         }, {})
     }, [pieChartData])
 
-    const isEmpty = false
+
+    const isEmpty = Object.keys(pieChartDataMap).length === 0
+
 
     return (
         <section className='activity-charts-section'>
@@ -38,59 +40,60 @@ export const PieChartMetrics = ({ pieChartData }: { pieChartData: ChartPieMetric
             </div>
 
             {isEmpty ?
+
+                <EmptyPieChart />
+                :
                 <>
-                <div>
-                    <ResponsiveContainer width='100%' height={260}>
-                        <PieChart width={400} height={350}>
-                            <Pie
-                                data={pieChartData}
-                                label={RenderCustomizedLabel}
-                                labelLine={false}
-                                outerRadius={120}
-                                fill='#8884d8'
-                                dataKey='projectPercentage'
-                                nameKey='category'
-                            >
-                                {pieChartData.map((entry) => (
-                                    <Cell
-                                        key={`cell-${entry.category}`}
-                                        fill={projectCategoryColorMap[entry.category]}
-                                    />
-                                ))}
-                                <Tooltip content={<CustomTooltip pieChartDataMap={pieChartDataMap} />} />
-                            </Pie>
-                        </PieChart>
-                    </ResponsiveContainer>
-                </div>
-                <div className='pie-chart-bottom'>
-                    <div className='pie-chart-category-legend'>
-                        <div className='pie-chart-square dev'></div>
-                        <span>Dev/Eng</span>
+                    <div>
+                        <ResponsiveContainer width='100%' height={260}>
+                            <PieChart width={400} height={350}>
+                                <Pie
+                                    data={pieChartData}
+                                    label={RenderCustomizedLabel}
+                                    labelLine={false}
+                                    outerRadius={120}
+                                    fill='#8884d8'
+                                    dataKey='projectPercentage'
+                                    nameKey='category'
+                                >
+                                    {pieChartData.map((entry) => (
+                                        <Cell
+                                            key={`cell-${entry.category}`}
+                                            fill={projectCategoryColorMap[entry.category]}
+                                        />
+                                    ))}
+                                    <Tooltip content={<CustomTooltip pieChartDataMap={pieChartDataMap} />} />
+                                </Pie>
+                            </PieChart>
+                        </ResponsiveContainer>
                     </div>
-                    <div className='pie-chart-category-legend'>
-                        <div className='pie-chart-square ux'></div>
-                        <span>UX</span>
+                    <div className='pie-chart-bottom'>
+                        <div className='pie-chart-category-legend'>
+                            <div className='pie-chart-square dev'></div>
+                            <span>Dev/Eng</span>
+                        </div>
+                        <div className='pie-chart-category-legend'>
+                            <div className='pie-chart-square ux'></div>
+                            <span>UX</span>
+                        </div>
+                        <div className='pie-chart-category-legend'>
+                            <div className='pie-chart-square maint'></div>
+                            <span>Maint</span>
+                        </div>
+                        <div className='pie-chart-category-legend'>
+                            <div className='pie-chart-square devops'></div>
+                            <span>DevOps</span>
+                        </div>
+                        <div className='pie-chart-category-legend'>
+                            <div className='pie-chart-square mktg'></div>
+                            <span>Mktg</span>
+                        </div>
+                        <div className='pie-chart-category-legend'>
+                            <div className='pie-chart-square da'></div>
+                            <span>DA</span>
+                        </div>
                     </div>
-                    <div className='pie-chart-category-legend'>
-                        <div className='pie-chart-square maint'></div>
-                        <span>Maint</span>
-                    </div>
-                    <div className='pie-chart-category-legend'>
-                        <div className='pie-chart-square devops'></div>
-                        <span>DevOps</span>
-                    </div>
-                    <div className='pie-chart-category-legend'>
-                        <div className='pie-chart-square mktg'></div>
-                        <span>Mktg</span>
-                    </div>
-                    <div className='pie-chart-category-legend'>
-                        <div className='pie-chart-square da'></div>
-                        <span>DA</span>
-                    </div>
-                </div>
-            </>
-            :
-            <EmptyPieChart />
+                </>
             }
         </section>
     );
