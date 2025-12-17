@@ -11,6 +11,7 @@ const COLORS = ['var(--color-primary)', 'var(--color-secondary)', 'var(--color-a
 
 export const PieChartMetrics = ({ pieChartData }: { pieChartData: ChartPieMetrics[] }): JSX.Element => {
 
+
     const projectCategoryColorMap: Record<ProjectCategory, string> = {
         'Development/Engineering': COLORS[0],
         'Design/UX': COLORS[1],
@@ -31,6 +32,7 @@ export const PieChartMetrics = ({ pieChartData }: { pieChartData: ChartPieMetric
 
 
     const isEmpty = Object.keys(pieChartDataMap).length === 0
+
 
 
     return (
