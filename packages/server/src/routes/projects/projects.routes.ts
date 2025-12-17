@@ -24,7 +24,6 @@ export const projectsRouter: Router = express.Router()
 
 // PROJECTS ROUTES
 projectsRouter.post('/', checkAuth, createProjectController)
-projectsRouter.get('/', checkAuth, getProjectsController) // ELIMINAR ENDPOINT ANTIGUO
 projectsRouter.get('/', checkAuth, getProjectsByFilterController)
 projectsRouter.get('/:projectId', checkAuth, getProjectByIdController)
 projectsRouter.patch('/:projectId', checkAuth, updateProjectController)

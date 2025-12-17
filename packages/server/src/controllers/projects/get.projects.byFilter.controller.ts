@@ -2,10 +2,10 @@ import { AppError } from 'src/utils/AppError.js'
 import { getProjectsByFilterService } from 'src/services/projects/get.projects.byFilter.service.js'
 
 import type { Request, Response } from 'express-serve-static-core'
+import type { ProjectsArrayResponseSuccessData, ProjectsResponseError } from 'src/types/custom.js'
 
 
-
-export const getProjectsByFilterController = async (req: Request, res: Response) => {
+export const getProjectsByFilterController = async (req: Request, res: Response<ProjectsArrayResponseSuccessData | ProjectsResponseError>): Promise<Response<ProjectsArrayResponseSuccessData | ProjectsResponseError>> => {
 
     const userId = req.userId
     const projectsByFilters = req.query
