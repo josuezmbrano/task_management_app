@@ -1570,6 +1570,38 @@ body {
 }
 
 
+/* Productivity loading state */
+
+.productivity-loading-state {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--spacing-xl);
+  justify-content: center;
+  align-items: center;
+}
+
+.productivity-loading-state h4 {
+  margin-top: var(--spacing-xl);
+  font-size: var(--font-size-h4);
+  color: var(--color-base-content)
+}
+
+
+/* Productivity error state */
+
+.productivity-error-state {
+  display: flex;
+  flex-direction: column;
+  margin-top: var(--spacing-md);
+  justify-content: center;
+  align-items: center;
+}
+
+.productivity-error-state img {
+  width: 300px;
+}
+
+
 /* GLOBAL SUMMARY PROJECTS */
 
 .global-project-summary-section {
