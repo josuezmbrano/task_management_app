@@ -17,7 +17,7 @@ export const getPieChartMetricsService = async ({ userId }: { userId: string }) 
                 COUNT(t.id) - SUM(CASE WHEN t.status = 'completed' THEN 1 ELSE 0 END) AS total_not_completed
             FROM
                 "Project" p
-            JOIN
+            LEFT JOIN
                 "Task" t ON p."id" = t."project_id"
             WHERE
                 p."owner_id" = ${userId}
@@ -46,6 +46,7 @@ export const getPieChartMetricsService = async ({ userId }: { userId: string }) 
                 total_not_completed: Number(metric.total_not_completed)
             }
         })
+
 
         return {finalChartMetrics}
 
