@@ -21,3 +21,14 @@ export interface DeleteProjectData {
     userId: string
     projectById: string
 }
+
+export interface ProjectFilterWhereClause {
+    owner_id: string
+    category?: string
+    status?: string
+}
+
+export interface ProjectFiltersQueryParams {
+    category?: string
+    status?: string
+}

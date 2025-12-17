@@ -5,6 +5,7 @@ import { checkAuth } from 'src/middlewares/auth/check.auth.middleware.js'
 // PROJECTS CONTROLLER IMPORTS
 import { getProjectsController } from 'src/controllers/projects/get.projects.controller.js'
 import { getProjectByIdController } from 'src/controllers/projects/get.projectById.controller.js'
+import { getProjectsByFilterController } from 'src/controllers/projects/get.projects.byFilter.controller.js'
 import { createProjectController } from 'src/controllers/projects/create.project.controller.js'
 import { updateProjectController } from 'src/controllers/projects/update.project.controller.js'
 import { deleteProjectController } from 'src/controllers/projects/delete.project.controller.js'
@@ -23,7 +24,8 @@ export const projectsRouter: Router = express.Router()
 
 // PROJECTS ROUTES
 projectsRouter.post('/', checkAuth, createProjectController)
-projectsRouter.get('/', checkAuth, getProjectsController)
+projectsRouter.get('/', checkAuth, getProjectsController) // ELIMINAR ENDPOINT ANTIGUO
+projectsRouter.get('/', checkAuth, getProjectsByFilterController)
 projectsRouter.get('/:projectId', checkAuth, getProjectByIdController)
 projectsRouter.patch('/:projectId', checkAuth, updateProjectController)
 projectsRouter.delete('/:projectId', checkAuth, deleteProjectController)
