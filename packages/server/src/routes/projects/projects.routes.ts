@@ -3,7 +3,6 @@ import  express  from 'express'
 import { checkAuth } from 'src/middlewares/auth/check.auth.middleware.js'
 
 // PROJECTS CONTROLLER IMPORTS
-import { getProjectsController } from 'src/controllers/projects/get.projects.controller.js'
 import { getProjectByIdController } from 'src/controllers/projects/get.projectById.controller.js'
 import { getProjectsByFilterController } from 'src/controllers/projects/get.projects.byFilter.controller.js'
 import { createProjectController } from 'src/controllers/projects/create.project.controller.js'

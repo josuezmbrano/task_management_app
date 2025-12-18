@@ -2064,3 +2064,37 @@ body {
   font-size: var(--font-size-caption);
   color: var(--color-base-content)
 }
+
+
+/* NO MATCH FILTERS COMPONENT */
+
+.no-match-filters-container {
+  margin: var(--spacing-sm);
+}
+
+.no-match-filters-title-div {
+  text-align: center;
+}
+
+.no-match-filters-title-div h3 {
+  font-size: var(--font-size-h3);
+  margin: 0.6rem 0;
+  color: var(--color-base-content);
+  font-weight: 600;
+}
+
+.no-match-filters-p-div p {
+  font-size: var(--font-size-body);
+  color: var(--color-base-content);
+  text-align: center;
+}
+
+.no-match-filters-img-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.no-match-filters-img-div img {
+  width: 200px;
+}

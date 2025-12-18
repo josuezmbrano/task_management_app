@@ -1,7 +1,7 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { axiosClient } from './axiosClient';
 
-import type { ProjectsArrayResponseSuccessData, ProjectResponseSuccessData, ProjectsResponseError, ProjectsData, ProjectsResponseSuccess } from 'src/types/api.types';
+import type {GetProjectsArrayResponseSuccessData, ProjectsArrayResponseSuccessData, ProjectResponseSuccessData, ProjectsResponseError, ProjectsData, GetProjectsData ,ProjectsResponseSuccess } from 'src/types/api.types';
 import type { CreateProjectForm, EditProjectForm, EditProjectStatus } from 'src/types/schema.types';
 import type { AxiosError } from 'axios';
 
@@ -9,7 +9,7 @@ import type { AxiosError } from 'axios';
 
 export const useGetProjects = (filterValues: {category?: string, status?: string}) => {
 
-    const projectsQuery = useQuery<ProjectsArrayResponseSuccessData, AxiosError<ProjectsResponseError>, ProjectsData[]>({
+    const projectsQuery = useQuery<GetProjectsArrayResponseSuccessData, AxiosError<ProjectsResponseError>, GetProjectsData>({
         queryKey: ['user-projects', filterValues],
         queryFn: async () => {
             const response = await axiosClient.get('/projects/', {params: {category: filterValues.category, status: filterValues.status}})

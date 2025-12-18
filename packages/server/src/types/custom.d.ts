@@ -50,6 +50,16 @@ export interface ProjectsArrayResponseSuccessData {
     projects: ProjectsData[]
 }
 
+interface GetProjectsData {
+    totalInDatabase: number
+    filteredProjects: ProjectsData[]
+}
+
+export interface GetProjectsArrayResponseSuccessData {
+    message: string
+    projects: GetProjectsData
+}
+
 export interface ProjectResponseSuccessData {
     message: string
     projects: ProjectsData

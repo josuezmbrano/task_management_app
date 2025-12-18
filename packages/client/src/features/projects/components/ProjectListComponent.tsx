@@ -10,7 +10,6 @@ import type { JSX } from 'react'
 
 
 
-
 export const ProjectListComponent = ({ projects }: { projects: ProjectsData[] }): JSX.Element => {
 
     const openModal = useModalStore((state) => state.openModal)

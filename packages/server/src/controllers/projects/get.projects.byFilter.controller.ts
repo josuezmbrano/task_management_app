@@ -2,10 +2,10 @@ import { AppError } from 'src/utils/AppError.js'
 import { getProjectsByFilterService } from 'src/services/projects/get.projects.byFilter.service.js'
 
 import type { Request, Response } from 'express-serve-static-core'
-import type { ProjectsArrayResponseSuccessData, ProjectsResponseError } from 'src/types/custom.js'
+import type { GetProjectsArrayResponseSuccessData, ProjectsResponseError } from 'src/types/custom.js'
 
 
-export const getProjectsByFilterController = async (req: Request, res: Response<ProjectsArrayResponseSuccessData | ProjectsResponseError>): Promise<Response<ProjectsArrayResponseSuccessData | ProjectsResponseError>> => {
+export const getProjectsByFilterController = async (req: Request, res: Response<GetProjectsArrayResponseSuccessData | ProjectsResponseError>): Promise<Response<GetProjectsArrayResponseSuccessData | ProjectsResponseError>> => {
 
     const userId = req.userId
     const projectsByFilters = req.query
@@ -17,8 +17,8 @@ export const getProjectsByFilterController = async (req: Request, res: Response<
 
     try {
 
-        const { filteredProjects } = await getProjectsByFilterService({ userId: userId, filters: projectsByFilters })
-        return res.status(200).json({message: 'Projects filtered fetched successfully', projects: filteredProjects})
+        const { projectsFiltered } = await getProjectsByFilterService({ userId: userId, filters: projectsByFilters })
+        return res.status(200).json({message: 'Projects filtered fetched successfully', projects: projectsFiltered})
 
     } catch (error) {
 

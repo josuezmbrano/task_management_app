@@ -15,7 +15,7 @@ const VALID_CATEGORIES =
         'Marketing/Sales'
     ]
 
-    
+
 const VALID_STATUS =
     [
         'pending',
@@ -42,22 +42,37 @@ export const getProjectsByFilterService = async ({ userId, filters }: { userId: 
             whereClause.status = filters.status
         }
 
+        const [totalProjects, filteredProjects] = await Promise.all([
 
-        const filteredProjects = await prisma.project.findMany({
-            where: whereClause,
-            orderBy: {
-                createdAt: 'desc'
-            },
-            select: {
-                public_id: true,
-                title: true,
-                description: true,
-                category: true,
-                status: true
-            }
-        })
+            prisma.project.count({
+                where: {
+                    owner_id: userId
+                }
+            }),
 
-        return { filteredProjects }
+            prisma.project.findMany({
+                where: whereClause,
+                orderBy: {
+                    createdAt: 'desc'
+                },
+                select: {
+                    public_id: true,
+                    title: true,
+                    description: true,
+                    category: true,
+                    status: true
+                }
+
+            })
+        ])
+         
+
+        const projectsFiltered = {
+            totalInDatabase: totalProjects,
+            filteredProjects
+        }
+
+        return { projectsFiltered }
 
     } catch (error) {
 
