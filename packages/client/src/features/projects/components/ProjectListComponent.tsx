@@ -1,14 +1,17 @@
+
 import { ProjectCardComponent } from './ProjectCardComponent'
 import { useModalStore } from '../../../store/useModalStore'
 
+
 import { CreateProjectFormComponent } from './CreateProjectFormComponent'
 
-import type { ProjectResponse } from '../../../types/api.types'
+import type { ProjectsData } from '../../../types/api.types'
 import type { JSX } from 'react'
 
 
 
-export const ProjectListComponent = ({ projects }: { projects: ProjectResponse[] }): JSX.Element => {
+
+export const ProjectListComponent = ({ projects }: { projects: ProjectsData[] }): JSX.Element => {
 
     const openModal = useModalStore((state) => state.openModal)
     const closeModal = useModalStore((state) => state.closeModal)
@@ -29,11 +32,6 @@ export const ProjectListComponent = ({ projects }: { projects: ProjectResponse[]
 
     return (
         <section>
-            <div className='project-list-filter'>
-                <button>All</button>
-                <button>Favourite</button>
-                <button>Recent</button>
-            </div>
             <div className='project-list-create'>
                 <button onClick={() => openModal(<CreateProjectFormComponent closeModal={closeModal} />)}>Create new project</button>
             </div>

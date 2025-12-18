@@ -1,5 +1,7 @@
+import { useState } from 'react'
 import { useModalStore } from '../../../store/useModalStore';
 import { useGetProjects } from '../../../api/projects.api'
+import { useFilterHelper } from '../../../hooks/useFilterHelper';
 
 import { ModalWrapper } from '../../../components/ui/ModalWrapper';
 import { EmptyProjectState } from '../../../components/ui/EmptyProjectState';
@@ -8,13 +10,25 @@ import { ProjectListComponent } from '../components/ProjectListComponent';
 import LoadingSpinner from '../../../assets/svg/loading-spinner.svg?react'
 
 import type { JSX } from 'react';
+import type { ChangeEvent } from 'react'
 
 
 
 export const DashboardProjects = (): JSX.Element => {
 
     const isOpen = useModalStore((state) => state.isOpen)
-    const { isLoading, isPending, projects = [] } = useGetProjects()
+    const [filterValues, setFilterValues] = useState({ category: '', status: '' })
+
+    
+    const filterHandler = (e: ChangeEvent<HTMLSelectElement>) => {
+        const { name, value } = e.target
+        setFilterValues(prevFilters => ({ ...prevFilters, [name]: value }))
+    }
+
+    const {activeFilters} = useFilterHelper(filterValues)
+    
+    const { isLoading, isPending, projects = [] } = useGetProjects(activeFilters)
+
 
     if (isPending || isLoading) {
         return (
@@ -28,12 +42,30 @@ export const DashboardProjects = (): JSX.Element => {
 
     return (
         <section>
+            <div className='project-list-filter'>
+                <select name='category' onChange={filterHandler}>
+                    <option value=''>All</option>
+                    <option value='Development/Engineering'>Development/Engineering</option>
+                    <option value='Design/UX'>Design/UX</option>
+                    <option value='Maintenance/Support'>Maintenance/Support</option>
+                    <option value='Infrastructure/Devops'>Infrastructure/Devops</option>
+                    <option value='Data analysis'>Data analysis</option>
+                    <option value='Marketing/Sales'>Marketing/Sales</option>
+                </select>
+                <select name='status' onChange={filterHandler}>
+                    <option value=''>All</option>
+                    <option value='pending'>Pending</option>
+                    <option value='on-hold'>On-hold</option>
+                    <option value='in-progress'>In-progress</option>
+                    <option value='completed'>Completed</option>
+                </select>
+            </div>
             {projects.length > 0 ?
-                <ProjectListComponent projects={projects}/>
+                <ProjectListComponent projects={projects} />
                 :
                 <EmptyProjectState />
             }
-        {isOpen && <ModalWrapper />}
+            {isOpen && <ModalWrapper />}
         </section>
     )
 }

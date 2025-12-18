@@ -7,14 +7,15 @@ import type { AxiosError } from 'axios';
 
 
 
-export const useGetProjects = () => {
+export const useGetProjects = (filterValues: {category?: string, status?: string}) => {
 
     const projectsQuery = useQuery<ProjectsArrayResponseSuccessData, AxiosError<ProjectsResponseError>, ProjectsData[]>({
-        queryKey: ['user-projects'],
+        queryKey: ['user-projects', filterValues],
         queryFn: async () => {
-            const response = await axiosClient.get('/projects/')
+            const response = await axiosClient.get('/projects/', {params: {category: filterValues.category, status: filterValues.status}})
             return response.data
         },
+        placeholderData: (previousData) => previousData,
         select: (data) => data.projects
     })
 
