@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useModalStore } from '../../../store/useModalStore';
 import { useGetProjects } from '../../../api/projects.api'
 import { useFilterHelper } from '../../../hooks/useFilterHelper';
+import { useSearchParams } from 'react-router';
 
 import { ModalWrapper } from '../../../components/ui/ModalWrapper';
 import { EmptyProjectState } from '../../../components/ui/EmptyProjectState';
@@ -17,18 +18,32 @@ import type { ChangeEvent } from 'react'
 
 export const DashboardProjects = (): JSX.Element => {
 
+    const [searchParams, setSearchParams] = useSearchParams()
+
     const isOpen = useModalStore((state) => state.isOpen)
-    const [filterValues, setFilterValues] = useState({ category: '', status: '' })
+    const [filterValues, setFilterValues] = useState({ category: searchParams.get('category') || '', status: searchParams.get('status') || '' })
+
+
+    const { activeFilters } = useFilterHelper(filterValues)
+    const { isLoading, isPending, projects = { totalInDatabase: 0, filteredProjects: [] } } = useGetProjects(activeFilters)
+
+
+    useEffect(() => {
+
+        const currentParams = new URLSearchParams(activeFilters).toString();
+        const urlParams = searchParams.toString();
+
+        if (currentParams === urlParams) return;
+
+        setSearchParams(activeFilters, {replace: true})
+        
+    }, [activeFilters, setSearchParams, searchParams])
 
 
     const filterHandler = (e: ChangeEvent<HTMLSelectElement>) => {
         const { name, value } = e.target
         setFilterValues(prevFilters => ({ ...prevFilters, [name]: value }))
     }
-
-    const { activeFilters } = useFilterHelper(filterValues)
-
-    const { isLoading, isPending, projects = { totalInDatabase: 0, filteredProjects: [] } } = useGetProjects(activeFilters)
 
 
     if (isPending || isLoading) {
@@ -39,7 +54,6 @@ export const DashboardProjects = (): JSX.Element => {
             </div>
         );
     }
-
 
     const renderProjectsContent = () => {
 
@@ -59,7 +73,7 @@ export const DashboardProjects = (): JSX.Element => {
         <section>
             {projects.totalInDatabase !== 0 && 
             <div className='project-list-filter'>
-                <select name='category' onChange={filterHandler}>
+                <select name='category' value={filterValues.category} onChange={filterHandler}>
                     <option value=''>All</option>
                     <option value='Development/Engineering'>Development/Engineering</option>
                     <option value='Design/UX'>Design/UX</option>
@@ -68,7 +82,7 @@ export const DashboardProjects = (): JSX.Element => {
                     <option value='Data analysis'>Data analysis</option>
                     <option value='Marketing/Sales'>Marketing/Sales</option>
                 </select>
-                <select name='status' onChange={filterHandler}>
+                <select name='status' value={filterValues.status} onChange={filterHandler}>
                     <option value=''>All</option>
                     <option value='pending'>Pending</option>
                     <option value='on-hold'>On-hold</option>

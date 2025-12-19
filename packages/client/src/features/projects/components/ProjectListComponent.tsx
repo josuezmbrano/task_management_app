@@ -1,4 +1,3 @@
-
 import { ProjectCardComponent } from './ProjectCardComponent'
 import { useModalStore } from '../../../store/useModalStore'
 
@@ -29,6 +28,7 @@ export const ProjectListComponent = ({ projects }: { projects: ProjectsData[] })
     })
 
 
+
     return (
         <section>
             <div className='project-list-create'>
@@ -37,4 +37,7 @@ export const ProjectListComponent = ({ projects }: { projects: ProjectsData[] })
             <div className='project-list-container'>{projectList}</div>
         </section>
     )
+
+
+
 }
