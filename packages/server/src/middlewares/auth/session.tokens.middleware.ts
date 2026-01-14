@@ -1,8 +1,8 @@
 import { generateRefreshToken } from 'src/utils/jwt.js'
 import type { Request, Response, NextFunction } from 'node_modules/@types/express/index.js'
-import type { AuthResponseData } from 'src/types/custom.js'
+import type { AuthResponseError } from 'src/types/custom.js'
 
-export const sessionRefreshTokens = async (req: Request, res: Response<AuthResponseData>, next: NextFunction): Promise<Response<AuthResponseData> | void> => {
+export const sessionRefreshTokens = async (req: Request, res: Response<AuthResponseError>, next: NextFunction): Promise<Response<AuthResponseError> | void> => {
 
     try {
         const { T_Final, hashedRefreshToken, refreshTokenExpiresAt } = await generateRefreshToken()

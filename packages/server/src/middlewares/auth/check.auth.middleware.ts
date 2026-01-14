@@ -1,11 +1,11 @@
 import jwt from 'jsonwebtoken'
 
 import type { Request, Response, NextFunction } from 'node_modules/@types/express/index.js'
-import type{ AuthResponseData } from 'src/types/custom.js'
+import type{ AuthResponseError } from 'src/types/custom.js'
 import type { IAuthPayload } from 'src/types/interfaces/auth/IAuthData.js'
 
 
-export const checkAuth = (req: Request, res: Response<AuthResponseData>, next: NextFunction): Response<AuthResponseData> | void => {
+export const checkAuth = (req: Request, res: Response<AuthResponseError>, next: NextFunction): Response<AuthResponseError> | void => {
     
     const JWT_SECRET = process.env.JWT_SECRET
     const token: string = req.cookies.token

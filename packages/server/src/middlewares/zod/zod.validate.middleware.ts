@@ -1,11 +1,11 @@
 import {ZodError, ZodType} from 'zod'
 
 import type { Request, Response, NextFunction } from 'express'
-import type { AuthResponseData } from 'src/types/custom.js'
+import type { AuthResponseSuccess, AuthResponseError } from 'src/types/custom.js'
 
 
 export const zodValidate = (validateSchema: ZodType) => {
-    return async (req: Request, res: Response<AuthResponseData>, next: NextFunction): Promise<Response<AuthResponseData> | void> => {
+    return async (req: Request, res: Response<AuthResponseSuccess | AuthResponseError>, next: NextFunction): Promise<Response<AuthResponseSuccess | AuthResponseError> | void> => {
         try {
             await validateSchema.parseAsync(req.body)
             next()
