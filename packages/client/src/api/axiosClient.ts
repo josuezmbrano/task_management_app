@@ -3,9 +3,10 @@ import axios from 'axios';
 import type { AxiosError, AxiosInstance } from 'axios';
 
 const API_URL = 'https://cautious-capybara-pqxwxvjp6x6frgj4-3000.app.github.dev/api' // TEMPORAL
+const LOCAL_URL = 'http://localhost:3000/api' // TEMPORAL
 
 export const axiosClient: AxiosInstance = axios.create({
-    baseURL: API_URL, // Temporal
+    baseURL: LOCAL_URL, // Temporal
     withCredentials: true
 })
 

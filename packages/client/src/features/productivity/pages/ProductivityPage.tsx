@@ -45,7 +45,7 @@ export const ProductivityPage = (): JSX.Element => {
         <GlobalProjectsSummary projectsMetrics={projectsMetrics}/>
         <TaskActivityChart taskMetrics={taskActivityChart} />
         <PieChartMetrics pieChartData={pieChartData} />
-        <AppLifetimeMetric tasksCompletedCount={tasksCompletedCount}/>
+        <AppLifetimeMetric tasksCompletedCount={tasksCompletedCount} appLifetime={appTime} />
 
         </section>
     )

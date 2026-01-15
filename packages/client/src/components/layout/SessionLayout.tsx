@@ -1,17 +1,11 @@
 import { NavLink, Outlet } from 'react-router'
 import { PanelLeftOpen, BellRing, UserIcon } from 'lucide-react'
-import { useSessionCounter } from '../../hooks/useSessionCounter'
 
 import type { JSX } from 'react'
 
 
 
-
-
-
 export const SessionLayout = (): JSX.Element => {
-
-    useSessionCounter()
 
 
     return (
